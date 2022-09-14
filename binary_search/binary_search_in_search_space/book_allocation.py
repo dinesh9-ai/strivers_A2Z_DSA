@@ -1,25 +1,32 @@
 a=[12,34,67,90]
 b=2
 h=0
+l=0
 for i in a:
     h+=i
+    l=max(l,i)
 
 def isp(t,b):
     c=1
     f=0
     for i in a:
-        if i+f>t:
-            c+=1
-            f=0
         f+=i
-    return c
+        if f>t:
+            c+=1
+            if c>b:
+                return 0
+            f=i
+    return 1
 
-l=a[0]
+r=-1
+if b>len(a):
+    return -1
 while l<=h:
     m=(l+h)>>1
-    if isp(m,b)<=b:
+    if isp(m,b):
         h=m-1
+        r=m
     else:
         l=m+1
 
-print(l)
+print(r)
