@@ -18,21 +18,22 @@ class LL:
         h.nxt=node(x)
 
         
-    def rev(self):
+    def revR(self,c,p):
         """
         To reverse Linked List
         """
-        p,c=None,self.head
-        if not c:
-            return
-        
-        while c:
-            n=c.nxt
+        if not c.nxt:
+            self.head=c
             c.nxt=p
-            p=c
-            c=n
-            
-        self.head=p
+            return
+        n=c.nxt
+        c.nxt=p
+        self.revR(n,c)
+    def rev(self):
+        if not self.head:
+            return
+        self.revR(self.head,None)
+        
     def Print(self):
         h=self.head
         while h:
